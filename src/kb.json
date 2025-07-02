@@ -1,0 +1,20 @@
+[
+    {
+      "service_id": "creative-design-01",
+      "service_name": "Creative Design",
+      "description": "Our creative design services include branding, logo design, and marketing materials to make your brand stand out.",
+      "keywords": ["design", "logo", "branding", "creative", "art"]
+    },
+    {
+      "service_id": "social-media-02",
+      "service_name": "Social Media Planning",
+      "description": "We offer comprehensive social media planning, content creation, and scheduling to boost your online presence and engagement.",
+      "keywords": ["social", "media", "facebook", "instagram", "marketing", "posts"]
+    },
+    {
+      "service_id": "ai-automation-03",
+      "service_name": "AI Automation",
+      "description": "Leverage our AI automation solutions to streamline your business processes, improve efficiency, and reduce operational costs.",
+      "keywords": ["ai", "automation", "bots", "workflow", "efficiency"]
+    }
+  ]
