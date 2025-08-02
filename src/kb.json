@@ -1,20 +1,38 @@
 [
-    {
-      "service_id": "creative-design-01",
-      "service_name": "Creative Design",
-      "description": "Our creative design services include branding, logo design, and marketing materials to make your brand stand out.",
-      "keywords": ["design", "logo", "branding", "creative", "art"]
-    },
-    {
-      "service_id": "social-media-02",
-      "service_name": "Social Media Planning",
-      "description": "We offer comprehensive social media planning, content creation, and scheduling to boost your online presence and engagement.",
-      "keywords": ["social", "media", "facebook", "instagram", "marketing", "posts"]
-    },
-    {
-      "service_id": "ai-automation-03",
-      "service_name": "AI Automation",
-      "description": "Leverage our AI automation solutions to streamline your business processes, improve efficiency, and reduce operational costs.",
-      "keywords": ["ai", "automation", "bots", "workflow", "efficiency"]
-    }
-  ]
+  {
+    "service_id": "ai-content-01",
+    "service_name": "AI-Powered Content Creation",
+    "description": "We generate high-quality, SEO-optimized content such as blog posts, articles, and marketing copy by combining advanced AI models with human oversight to ensure it matches your brand's voice and engages your audience.",
+    "keywords": ["content", "writing", "blog", "articles", "seo", "copywriting", "ai writing"]
+  },
+  {
+    "service_id": "branding-design-02",
+    "service_name": "Brand Identity & Design",
+    "description": "Our team creates memorable brand identities, including logo design, color palettes, typography, and complete style guides, to give your business a professional and cohesive visual presence.",
+    "keywords": ["design", "logo", "branding", "visuals", "style guide", "identity", "creative"]
+  },
+  {
+    "service_id": "automation-workflows-03",
+    "service_name": "Intelligent Automation & Workflows",
+    "description": "We analyze your business processes and implement custom AI-powered workflows to automate repetitive tasks, improve efficiency, and reduce operational costs, using tools like Zapier, Make, and custom scripts.",
+    "keywords": ["automation", "workflows", "efficiency", "processes", "zapier", "bots", "tasks"]
+  },
+  {
+    "service_id": "social-media-04",
+    "service_name": "Social Media Strategy & Management",
+    "description": "We develop and execute comprehensive social media strategies, including content calendars, post creation, community management, and performance analytics to grow your online presence.",
+    "keywords": ["social media", "facebook", "instagram", "marketing", "posts", "community", "strategy"]
+  },
+  {
+    "service_id": "chatbot-dev-05",
+    "service_name": "AI Chatbot Development",
+    "description": "We design and build custom AI chatbots for websites and messaging platforms to handle customer support, lead generation, and user engagement 24/7, providing instant responses to your users.",
+    "keywords": ["chatbot", "assistant", "support bot", "lead generation", "rasa", "dialogflow", "voiceflow"]
+  },
+  {
+    "service_id": "web-app-dev-06",
+    "service_name": "Website & App Development",
+    "description": "We build modern, responsive, and high-performance websites and mobile applications tailored to your business needs, focusing on excellent user experience and robust functionality.",
+    "keywords": ["website", "app", "development", "mobile app", "web dev", "front-end", "back-end"]
+  }
+]

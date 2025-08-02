@@ -1,8 +1,18 @@
-# Virtual Environment
+# Python virtual environment
 venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# IDE files
+# Environment variables
+.env
+
+# Secret credentials files
+firebase-credentials.json
+
+# IDE and OS files
 .vscode/
 .idea/
+.DS_Store
+*.log
