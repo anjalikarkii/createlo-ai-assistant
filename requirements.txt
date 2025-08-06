@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+pydantic
+google-generativeai
+python-dotenv
+firebase-admin
+requests
+Flask
+twilio
+gunicorn
