@@ -8,8 +8,12 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# Path for Firebase credentials in the deployed container
-cred_path = "/secrets/firebase-credentials.json"
+# --- THE FIX IS HERE: THIS ROBUST LOGIC WORKS FOR LOCAL DEVELOPMENT ---
+# It looks for the credentials file in your main project folder.
+cred_path = os.path.join(os.path.dirname(__file__), '..', 'firebase-credentials.json')
+if not os.path.exists(cred_path):
+    # This is a fallback, but the line above should work on your Mac.
+    cred_path = "/app/firebase-credentials.json" 
 
 try:
     load_dotenv()
@@ -21,6 +25,7 @@ except Exception as e:
     print(f"🔴 FATAL ERROR: Could not initialize Firebase. Check credentials path and content. Error: {e}")
     db = None
 
+# --- The rest of the file is the same stable version ---
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY not found in .env file.")
@@ -33,7 +38,6 @@ def load_knowledge_base():
         return json.load(f)
 KB = load_knowledge_base()
 
-# --- Reverted to the simpler request model ---
 class QueryRequest(BaseModel):
     query: str
     session_id: str
@@ -73,7 +77,6 @@ def handle_query(request: QueryRequest):
     else:
         prompt_context = f"Service Name: {found_service['service_name']}. Service Description: {found_service['description']}"
     
-    # --- Reverted to the final, stable English-only prompt ---
     full_prompt = f"""You are the official AI Assistant for Createlo. Your tone is professional, knowledgeable, and helpful.
 
     **CRITICAL INSTRUCTION:**
