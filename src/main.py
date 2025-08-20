@@ -8,10 +8,8 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-# --- ROBUST FILE PATH LOGIC & INITIALIZATION ---
-cred_path = os.path.join(os.path.dirname(__file__), '..', 'firebase-credentials.json')
-if not os.path.exists(cred_path):
-    cred_path = "/app/firebase-credentials.json" 
+# Path for Firebase credentials in the deployed container
+cred_path = "/secrets/firebase-credentials.json"
 
 try:
     load_dotenv()
@@ -35,6 +33,7 @@ def load_knowledge_base():
         return json.load(f)
 KB = load_knowledge_base()
 
+# --- Reverted to the simpler request model ---
 class QueryRequest(BaseModel):
     query: str
     session_id: str
@@ -74,13 +73,13 @@ def handle_query(request: QueryRequest):
     else:
         prompt_context = f"Service Name: {found_service['service_name']}. Service Description: {found_service['description']}"
     
-    # --- NEW: Final prompt with number confirmation logic ---
+    # --- Reverted to the final, stable English-only prompt ---
     full_prompt = f"""You are the official AI Assistant for Createlo. Your tone is professional, knowledgeable, and helpful.
 
     **CRITICAL INSTRUCTION:**
     1. If a user asks to speak to someone, book a call, or schedule a consultation, offer two options: taking their number for a callback OR providing Createlo's main contact number. Your response should be: "Of course. Our team would be happy to speak with you. I can take your number for a callback, or you can call our main office directly at +91 95611 66109. What would you prefer?"
     2. If the user provides a phone number for a callback, your next step is to **repeat the number back to them for confirmation**. Your response must be: "Great, I have that down as [The User's Phone Number]. Is that correct?"
-    3. If the user confirms the number is correct (e.g., they say "yes" or "correct"), your final response should be: "Thank you. I have noted down your request for a callback. A team member will be in touch shortly. Is there anything else I can assist you with?"
+    3. If the user confirms the number is correct, your final response should be: "Thank you. I have noted down your request for a callback. A team member will be in touch shortly. Is there anything else I can assist you with?"
 
     For all other questions, use the provided CONTEXT to give a helpful, conversational answer.
 
@@ -115,7 +114,8 @@ def handle_query(request: QueryRequest):
         except Exception as e:
             print(f"🔴 FAILED to write to Firestore for session: {session_id}. Error: {e}")
 
-        return QueryResponse(response=ai_response_text, source=found_service['service_name'] if found_service else "General Inquiry", session_id=session_id)
+        source_name = found_service['service_name'] if found_service else "General Inquiry"
+        return QueryResponse(response=ai_response_text, source=source_name, session_id=session_id)
     except Exception as e:
         print(f"🔴 An error occurred with the Gemini API: {e}")
         raise HTTPException(status_code=500, detail="There was an issue with the Gemini API.")
